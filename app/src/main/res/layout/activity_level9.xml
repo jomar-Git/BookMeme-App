@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/kapitanbg"
+    tools:context=".Level8Activity">
+
+    <TextView
+        android:id="@+id/player1"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#7564CCC5"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center"
+        android:text="@string/player_name"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/level1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="LEVEL 09"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/kimchutext"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <TextView
+        android:id="@+id/attacktimetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Attack  Time"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/attacktimesectext"
+        app:layout_constraintEnd_toStartOf="@+id/kimchutext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toBottomOf="@+id/level1" />
+
+    <TextView
+        android:id="@+id/attacktimesectext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="00sec."
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/kimchutext"
+        app:layout_constraintStart_toEndOf="@+id/player1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <TextView
+        android:id="@+id/kimchutext"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#7564CCC5"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="KAPITAN"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/attack_button"
+        style="@style/Attack.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/press_start_2p"
+        android:includeFontPadding="false"
+        android:text="ATTACK"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wordslayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#64CCC5"
+        app:layout_constraintBottom_toTopOf="@+id/attack_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
+
+        <LinearLayout
+            android:id="@+id/row1_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/row2_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/picker_letter1"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text="E"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter2"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter3"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text="F"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter4"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter5"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter6"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter7"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter8"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/row2_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/row1_button">
+
+            <Button
+                android:id="@+id/picker_letter9"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter10"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter11"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter12"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text="J"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter13"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter14"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="#64CCC5"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter15"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text="Z"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/picker_letter16"
+                style="@style/Custom.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#419893"
+                android:onClick="pick_letter"
+                android:text=""
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/lifebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <ImageView
+            android:id="@+id/lifebar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/baseline_square_24" />
+
+        <ImageView
+            android:id="@+id/lifebar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/baseline_square_24" />
+
+        <ImageView
+            android:id="@+id/lifebar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/baseline_square_24" />
+
+        <ImageView
+            android:id="@+id/lifebar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/baseline_square_24" />
+
+        <ImageView
+            android:id="@+id/lifebar5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            app:srcCompat="@drawable/baseline_square_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/enemylifebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kimchutext"
+        app:layout_constraintVertical_bias="0.01">
+
+        <ImageView
+            android:id="@+id/enemybar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/enemylifebar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/enemylifebar"
+        app:layout_constraintTop_toBottomOf="@+id/kimchutext"
+        app:layout_constraintVertical_bias="0.08">
+
+        <ImageView
+            android:id="@+id/enemybar11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+        <ImageView
+            android:id="@+id/enemybar13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+
+        <ImageView
+            android:id="@+id/enemybar14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+        <ImageView
+            android:id="@+id/enemybar15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+        <ImageView
+            android:id="@+id/enemybar16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+        <ImageView
+            android:id="@+id/enemybar17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+        <ImageView
+            android:id="@+id/enemybar18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/enemybar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/yourwords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/wordslayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.926">
+
+        <Button
+            android:id="@+id/display_letter1"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="S"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter2"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="D"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter3"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="J"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter4"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="A"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter5"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="N"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter6"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="R"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter7"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="L"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter8"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="E"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter9"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="K"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter10"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="K"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter11"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="T"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/display_letter12"
+            style="@style/your.words"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#053B50"
+            android:onClick="remove_pick_letter"
+            android:text="C"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/markzucker1"
+        android:layout_width="98dp"
+        android:layout_height="244dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wordslayout"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lifebar"
+        app:layout_constraintVertical_bias="0.54"
+        app:srcCompat="@drawable/markcharac" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/Attack.Button"
+        android:layout_width="135dp"
+        android:layout_height="277dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/wordslayout"
+        app:layout_constraintTop_toBottomOf="@+id/enemylifebar"
+        app:layout_constraintVertical_bias="0.719"
+        app:srcCompat="@drawable/kapitankalbocharac" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

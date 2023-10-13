@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BookMeme</string>
+    <string name="game_title">BOOKMEME</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="tap_to_start">TAP TO START</string>
+    <string name="fb_like_btn">FB_Like_Button</string>
+    <string name="bg_music">BG MUSIC</string>
+    <string name="player_name">Player Name</string>
+    <string name="title_activity_aboutuswindow">aboutuswindow</string>
+    <string name="action_settings">Settings</string>
+</resources>
