@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Tap to start onClick function
+    // Tap to start onClick method
     public void launchPlayerSelectionActivity(View view) {
         YoYo.with(Techniques.FadeOut)
                 .duration(700)
