@@ -11,9 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class Level1Activity extends AppCompatActivity {
@@ -24,11 +21,12 @@ public class Level1Activity extends AppCompatActivity {
     private Button AttackButton;
 
     public ArrayList<Button> PickerButton, DisplayButton;
+
+    // inGameLetters are the letters that is currently available and displayed
+    // selectedLetters are the letters that is selected by users
     public ArrayList<ArrayList<Object>> inGameLetters, selectedLetters;
 
     private int time = 30;
-    private int counter1 = 0,counter2 = 0;
-    CharSequence invoker_value,RemovePickInvokerValue;
     private final String LOG_TAG = "Level1Activity";
 
     @Override
@@ -62,21 +60,27 @@ public class Level1Activity extends AppCompatActivity {
 
     private void populate_displayBtn() {
         int arrsize = DisplayButton.size();
-        if (arrsize > 0) {
-        for (int i = 0; arrsize > i; i++) {
+//        Button button;
+        String char_value;
+        for (int i = 1; arrsize >= i; i++) {
             int buttonId = getResources().getIdentifier("display_letter" + i, "id", getPackageName());
             Button button = findViewById(buttonId);
-            String char_value;
             try {
-                ArrayList<Object> letter_data = inGameLetters.get(i);
+                int letter_index = i - 1;
+                ArrayList<Object> letter_data = selectedLetters.get(letter_index);
                 char_value = (String) letter_data.get(1);
             } catch (Exception e) {
                 char_value = "";
             }
-
+            Log.d(LOG_TAG, "populate_displayBtn>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            Log.d(LOG_TAG, "char_value: " + char_value);
+            Log.d(LOG_TAG, "display_letter: " + "display_letter" + i);
+            Log.d(LOG_TAG, "buttonId: " + buttonId);
             button.setText(char_value);
-            button.setVisibility(View.VISIBLE);
-            break;
+            if (char_value.equals("")) {
+                button.setVisibility(View.GONE);
+            } else {
+                button.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -84,113 +88,122 @@ public class Level1Activity extends AppCompatActivity {
     private void populate_pickerBtn() {
         int arrsize = PickerButton.size();
         if (arrsize > 0) {
-            for (int i = 0; arrsize > i; i++) {
+            for (int i = 1; arrsize >= i; i++) {
                 int buttonId = getResources().getIdentifier("picker_letter" + i, "id", getPackageName());
                 Button button = findViewById(buttonId);
-                String char_value;
-                try {
-                    ArrayList<Object> letter_data = selectedLetters.get(i);
-                    char_value = (String) letter_data.get(1);
-                } catch (Exception e) {
-                    char_value = "";
+                String char_value = null;
+                for (ArrayList<Object> array_item: inGameLetters) {
+                    if ((int) array_item.get(0) == buttonId) {
+                        try {
+                            // the id in arraylist is will be searched in all pickerButton items
+                            Log.d(LOG_TAG,"array_item.get(1): " + array_item.get(1));
+                            char_value = (String) array_item.get(1);
+                        } catch (Exception e) {
+                            Log.d(LOG_TAG, "populate_pickerBtn Exception: " + e + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                            char_value = "";
+                        }
+                    }
+                    
                 }
-
                 button.setText(char_value);
-                button.setVisibility(View.VISIBLE);
-                break;
             }
         }
     }
 
     public void remove_pick_letter(View view) {
         // know who invoke the method
-        Button CharSender = (Button) view;
         // get the char value using buttonId invoker_value
-        for (ArrayList<Object> invoker_data: selectedLetters) {
-            int invoker_id = (int) invoker_data.get(0);
-//            Log.d(LOG_TAG, "invoker_id: " + invoker_id + " view.getId(): " + view.getId());
-            if (invoker_id == view.getId()) {
-                RemovePickInvokerValue = (CharSequence) invoker_data.get(1);
+        ArrayList<Object> sendData = null;
+        int counter = 0;
+        for (Button button: DisplayButton) {
+            // get the id of one button in arraylist
+            int button_id = button.getId();
+            Log.d(LOG_TAG, "button_id: " + button_id + " view.getId(): " + view.getId());
+            if (button_id == view.getId()) {
+//                RemovePickInvokerValue = (CharSequence) invoker_data.get(1);
+                ArrayList<Object> invoker_data = selectedLetters.get(counter);
+                sendData = invoker_data;
                 break;
             }
-            counter2++;
+            counter++;
         }
         Log.d(LOG_TAG, "remove_pick_letter/CURRENT INGAMELETTERS SIZE "+inGameLetters.size());
         Log.d(LOG_TAG, "remove_pick_letter/CURRENT INGAMELETTERS "+ String.valueOf(inGameLetters));
         // check in PickerButton which button is empty
-            for (Button ReceiverButton: PickerButton) {
-                CharSequence ReceiverText = ReceiverButton.getText();
-                Log.d(LOG_TAG, "ReceiverText " + ReceiverText +">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
-                // get the empty button id
+        for (Button ReceiverButton: PickerButton) {
+            CharSequence ReceiverText = ReceiverButton.getText();
+            Log.d(LOG_TAG, "ReceiverText " + ReceiverText +">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+            // get the empty button id
 
-                Log.d(LOG_TAG, String.valueOf(TextUtils.isEmpty(ReceiverText)));
+            Log.d(LOG_TAG, String.valueOf(TextUtils.isEmpty(ReceiverText)));
 
-                if (TextUtils.isEmpty(ReceiverText)) {
-                    // add empty button id and invoker value arraylist to selectedLetters arraylist
-                    int button_id = ReceiverButton.getId();
-                    ArrayList<Object> add_selected = new ArrayList<>();
-                    add_selected.add(button_id);
-                    add_selected.add(RemovePickInvokerValue);
-                    inGameLetters.add(add_selected);
-//                    Log.d(LOG_TAG, "BEFORE selectedLetters SIZE "+inGameLetters.size());
-                    selectedLetters.remove(counter2);
-//                    Log.d(LOG_TAG, "AFTER selectedLetters SIZE "+inGameLetters.size());
-//                    Log.d(LOG_TAG, "UPDATED selectedLetters "+String.valueOf(inGameLetters));
-//                    CharSender.setText("");
-//                    Log.d(LOG_TAG, counter2 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
-                    // set the empty button as visible
-                    // set the method invoker as gone
-                    CharSender.setVisibility(View.GONE);
-                    // repopulate display buttons text value
-                    populate_displayBtn();
-                    populate_pickerBtn();
-                    break;
-                }
+            if (TextUtils.isEmpty(ReceiverText)) {
+                // add empty button id and invoker value arraylist to selectedLetters arraylist
+                inGameLetters.add(sendData);
+                Log.d(LOG_TAG, "counter: "+counter);
+                selectedLetters.remove(counter);
+//                Log.d(LOG_TAG, "AFTER selectedLetters SIZE "+selectedLetters.size());
+//                Log.d(LOG_TAG, "UPDATED selectedLetters "+String.valueOf(selectedLetters));
+//                Log.d(LOG_TAG, counter2 + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+                // set the empty button as visible
+                // set the method invoker as gone
+//                    CharSender.setVisibility(View.GONE);
+                // repopulate display buttons text value
+                populate_displayBtn();
+                populate_pickerBtn();
+                break;
             }
+        }
 //        Log.d(LOG_TAG, counter2 + " OUTSIDE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
     }
 
     public void pick_letter(View view) {
         // know who invoke the method
         Button CharSender = (Button) view;
+        ArrayList<Object> sendData = null;
+        CharSequence invoker_value = null;
         // get the char value using buttonIdinvoker_value
+        int counter = 0;
         for (ArrayList<Object> invoker_data: inGameLetters) {
             int invoker_id = (int) invoker_data.get(0);
             if (invoker_id == view.getId()) {
                 invoker_value = (CharSequence) invoker_data.get(1);
+                sendData = invoker_data;
                 break;
             }
-            counter1++;
+            counter++;
         }
             // check in DisplayButton which button is empty
         for (Button ReceiverButton: DisplayButton) {
             CharSequence ReceiverText = ReceiverButton.getText();
-            Log.d(LOG_TAG, ReceiverText + " " + counter1 +">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+            Log.d(LOG_TAG, ReceiverText + " " + counter +">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
             // get the empty button id
             if (!TextUtils.isEmpty(invoker_value)) {
                 if (TextUtils.isEmpty(ReceiverText)) {
                     // add empty button id and invoker value arraylist to selectedLetters arraylist
-                    int button_id = ReceiverButton.getId();
-                    ArrayList<Object> add_selected = new ArrayList<>();
-                    add_selected.add(button_id);
-                    add_selected.add(invoker_value);
-                    selectedLetters.add(add_selected);
+//                    int button_id = ReceiverButton.getId();
+//                    ArrayList<Object> add_selected = new ArrayList<>();
+//                    add_selected.add(button_id);
+//                    add_selected.add(invoker_value);
+                    selectedLetters.add(sendData);
 //                    Log.d(LOG_TAG, "BEFORE INGAMELETTERS SIZE " + inGameLetters.size());
-                    inGameLetters.remove(counter1);
+                    inGameLetters.remove(counter);
 //                    Log.d(LOG_TAG, "AFTER INGAMELETTERS SIZE " + inGameLetters.size());
 //                    Log.d(LOG_TAG, "UPDATED INGAMELETTERS " + String.valueOf(inGameLetters));
-                    CharSender.setText("");
+//                    CharSender.setText("");
                     // repopulate display buttons text value
                     populate_displayBtn();
                     populate_pickerBtn();
                     // set the empty button as visible
-                    ReceiverButton.setVisibility(View.VISIBLE);
+//                    ReceiverButton.setVisibility(View.VISIBLE);
                     // set the method invoker as invisible
-                    CharSender.setVisibility(View.INVISIBLE);
+//                    CharSender.setVisibility(View.INVISIBLE);
                     Log.d(LOG_TAG, "UPDATED INGAMELETTERS " + String.valueOf(inGameLetters));
                     Log.d(LOG_TAG, "AFTER INGAMELETTERS SIZE " + inGameLetters.size());
                     break;
                 }
+            } else {
+                Log.d(LOG_TAG, "Letter selection denioed: button does not have text attribute value");
             }
         }
     }
